@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	default-lazy-init="true">
+	<!-- Memcached缓存客户端配置 -->
+	<bean id="cacheClient" class="com.xss.web.base.cache.CacheClient">
+		<property name="pollInitParams">
+			<props>
+				<!-- 设置缓存服务器，多个以','分隔 -->
+				<prop key="servers">127.0.0.1:11211</prop>
+				<!-- 设置各缓存服务器比重，多个以','分隔 -->
+				<prop key="weights">1</prop>
+				<!-- 初始化连接数 -->
+				<prop key="initConn">5</prop>
+				<!-- 最小连接数 -->
+				<prop key="minConn">5</prop>
+				<!-- 最大连接数 -->
+				<prop key="maxConn">2048</prop>
+				<!-- 最大闲置时间，单位：秒 -->
+				<prop key="maxIdle">21600</prop>
+				<!-- 设置主线程睡眠时间,每隔30秒醒来 然后,开始维护 连接数大小 -->
+				<prop key="maintSleep">30</prop>
+				<!-- 设置读取超时 单位秒 -->
+				<prop key="socketTO">3</prop>
+				<!-- 设置连接超时，0为不设置超时 -->
+				<prop key="socketConnectTO">0</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
